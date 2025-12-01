@@ -29,11 +29,12 @@ def part2(fn: Path) -> None:
     left = False
     for line in lines:
         if (line[0] == 'L') != left:
-            dial = 100 - dial
+            dial = (100 - dial) % 100
             left = not left
 
-        dial = (dial % 100) + int(line[1:])
+        dial = dial + int(line[1:])
         zcount += dial // 100
+        dial %= 100
 
     print(f'{fn.name}: {zcount}')
 
